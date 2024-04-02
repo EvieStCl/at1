@@ -1,5 +1,12 @@
 {% extends "eduprod/layout.html" %}
 {% block body %}
 <div id="content" data-questions='{{ questions_json|safe }}'></div>
-<button id="revealBtn">Reveal Answer</button> 
+<!-- Category selection dropdown -->
+<select id="categorySelect">
+    <option value="">Select a Category</option>
+    {% for category in categories %}
+        <option value="{{ category }}">{{ category }}</option>
+    {% endfor %}
+</select>
+<button id="revealBtn">Reveal Answer</button>
 {% endblock %}
