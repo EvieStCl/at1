@@ -4,10 +4,10 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 
+@login_required
 def index(request):
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("users:login"))
     return render(request, "users/user.html")
 
 def login_view(request):
@@ -19,8 +19,8 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("users:index"))
         else:
-            messages.success(request, "Invalid Credentials.")
-            return render(request, "users/login.html")
+            messages.error(request, "Invalid Credentials.")
+            return render(request, "users/login.html", {'username': username})
     return render(request, "users/login.html")
 
 def logout_view(request):

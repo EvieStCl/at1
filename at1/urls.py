@@ -1,26 +1,15 @@
 from django.contrib import admin
-from django.urls import include, path
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('eduprod/', include('eduprod.urls')),
-]
-
-from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('flashcards.urls')),
-]
-
-from django.contrib import admin
-from django.urls import include, path
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('users/', include(('users.urls', 'users'), namespace='users')),
-    path('eduprod/', include(('eduprod.urls', 'eduprod'), namespace='eduprod')),
-    path('accounts/login/', include('users.urls')),
-    path('flashcards/', include('flashcards.urls')),
+    path('', include('flashcards.urls')),  # Include flashcards app URLs
+    path('users/', include('users.urls')),  # Include users app URLs
+    path('eduprod/', include('eduprod.urls')),  # Include eduprod app URLs
+    path('', include('splash.urls')),  # Include splash app URLs
+    # Add other URL patterns as needed
+    path('accounts/', include('django.contrib.auth.urls')),  # Include built-in authentication URLs
+    path('signup/', user_views.signup, name='signup'),  # URL for user registration
 ]
