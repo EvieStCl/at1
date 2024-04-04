@@ -11,5 +11,5 @@ urlpatterns = [
     path('', include('splash.urls')),  # Include splash app URLs
     # Add other URL patterns as needed
     path('accounts/', include('django.contrib.auth.urls')),  # Include built-in authentication URLs
-    path('signup/', user_views.signup, name='signup'),  # URL for user registration
+    
 ]
